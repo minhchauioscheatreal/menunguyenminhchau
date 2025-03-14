@@ -111,6 +111,37 @@
             button.classList.toggle('glowing-border');
         }
     </script>
+ </style>
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            
+            if (username === "admin1" && password === "ert-124") {
+                errorMessage.style.display = 'none';
+                document.getElementById('loginPanel').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'flex';
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        function logout() {
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('loginPanel').style.display = 'block';
+        }
+
+        function updateSensitivity(value) {
+            document.getElementById('sensitivityValue').innerText = value;
+        }
+
+        function toggleFeature(button) {
+            button.classList.toggle('glowing-border');
+        }
+    </script>
+</head>
+<body>
 </head>
 <body>
     <div class="background"></div>
