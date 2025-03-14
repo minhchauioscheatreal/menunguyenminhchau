@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@minhchauiOScheat</title>
+    <title>menumode3</title>
     <style>
         body {
             margin: 0;
@@ -15,348 +15,127 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            position: relative;
+        }
+
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 10%, rgba(0,0,0,0.8) 90%);
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
         .container {
+            position: relative;
             padding: 20px;
             border-radius: 15px;
             animation: borderColorChange 3s infinite;
             border: 5px solid transparent;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            background-image: url('https://img.upanh.tv/2025/01/20/4774CA97-678E-429D-8F46-8DF853ABD1FC.png');
-            background-size: cover;
-            background-position: center;
+            background: rgba(0, 0, 0, 0.7);
         }
 
-        @keyframes borderColorChange {
-            0% { border-color: #28a728d6; }
-            25% { border-color: #ccff00; }
-            50% { border-color: #07ffd2; }
-            75% { border-color: #3578dc; }
-            100% { border-color: #9f28a7; }
-        }
-
-        .login-panel, .panel {
-            width: 90%;
-            max-width: 400px;
-            min-height: 500px; /* Đặt chiều cao tối thiểu cho khung đăng nhập */
-            background-color: rgba(24, 24, 24, 0.8);
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-
-        .header {
-            font-size: 24px;
-            color: #dc35c6;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .description {
-            font-size: 14px;
-            color: #bbb;
-            margin-bottom: 15px;
-        }
-
-        .input-field {
-            width: calc(100% - 24px);
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #555;
-            background-color: #334;
-            color: #dc3545;
-            font-size: 18px;
-            box-sizing: border-box;
-        }
-
-        .button-bar {
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            animation: colorChange 3s infinite;
-            transition: background-color 0.4s;
-        }
-
-        @keyframes colorChange {
-            0% { background-color: #28a745; }
-            25% { background-color: #007bff; }
-            50% { background-color: #ffc107; }
-            75% { background-color: #dc3545; }
-            100% { background-color: #28a745; }
-        }
-
-        .switch-bar {
+        .dashboard {
             display: flex;
-            justify-content: space-around;
-            margin-bottom: 23px;
-        }
-
-        .switch-bar label {
-            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 5px;
-            font-size: 16px;
-            color: #dc3545;
+            gap: 10px;
         }
 
-        .option {
-            background-color: #1e1e1e;
-            padding: 16px;
-            border-radius: 10px;
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-align: left;
-        }
-
-        .option div {
-            text-align: left;
-            width: 100%;
-            color: #dc3545;
-        }
-
-        .slider-container {
-            display: none;
-            margin-top: 10px;
-            text-align: left;
-        }
-
-        .slider {
-            width: 100%;
-        }
-
-        .footer {
-            font-size: 12px;
-            color: #888;
-            margin-top: 10px;
-        }
-
-        .copyright {
-            margin-top: 5px;
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 34px;
-            height: 20px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider-switch {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #555;
-            transition: 0.4s;
-            border-radius: 34px;
-        }
-
-        .slider-switch:before {
-            position: absolute;
-            content: "";
-            height: 14px; 
-            width: 14px; 
-            left: 3px; 
-            bottom: 3px; 
-            background-color: red; 
-            transition: 0.4s; 
-            border-radius: 50%; 
-        }
-
-        input:checked + .slider-switch {
-            background-color: #28a745;
-        }
-
-        input:checked + .slider-switch:before {
-            transform: translateX(14px); 
-        }
-
-        .panel {
-            display: none; 
-        }
-
-        .login-panel button {
+        .dashboard button {
             width: 100%;
             padding: 10px;
-            background-color: #f5f5f5;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #dc3545;
-            font-size: 22px;
-        }
-
-        .slider-value {
-            font-size: 14px;
-            color: #bbb;
-            margin-top: 5px;
-        }
-
-        .settings-button {
-            padding: 10px 20px;
-            background-color: gold;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
             font-size: 16px;
-            margin-top: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
         }
 
-        .settings-button.disabled {
-            background-color: #28a745; 
-            color: black; 
-            cursor: not-allowed; 
+        .glowing-border {
+            animation: glowing 1s infinite alternate;
+        }
+
+        @keyframes glowing {
+            0% { box-shadow: 0 0 5px red, 0 0 10px orange, 0 0 15px yellow, 0 0 20px green, 0 0 25px blue, 0 0 30px indigo, 0 0 35px violet; }
+            100% { box-shadow: 0 0 10px violet, 0 0 15px indigo, 0 0 20px blue, 0 0 25px green, 0 0 30px yellow, 0 0 35px orange, 0 0 40px red; }
+        }
+
+        .rainbow-text {
+            animation: rainbowText 2s infinite linear;
+        }
+
+        @keyframes rainbowText {
+            0% { color: red; }
+            14% { color: orange; }
+            28% { color: yellow; }
+            42% { color: green; }
+            57% { color: blue; }
+            71% { color: indigo; }
+            85% { color: violet; }
+            100% { color: red; }
+        }
+
+        .red-glow-text {
+            animation: redGlow 1s infinite alternate;
+        }
+
+        @keyframes redGlow {
+            0% { color: darkred; text-shadow: 0 0 5px red; }
+            100% { color: red; text-shadow: 0 0 15px red; }
         }
     </style>
     <script>
         function login() {
-            const username = document.getElementById("username").value; 
-            const password = document.getElementById("password").value; 
-            if (username === "MinhChau" && password === "text1-208e09") {
-                document.querySelector(".login-panel").style.display = "none";
-                document.querySelector(".panel").style.display = "block";
-            } else {
-                alert("Sai Mật khẩu");
-            }
+            document.getElementById('loginPanel').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'flex';
         }
 
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
-            if (file) {
-                alert("Bạn đã chọn tệp: " + file.name);
-            }
+        function logout() {
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('loginPanel').style.display = 'block';
         }
 
-        function goToLink() {
-            window.location.href = "https://zalo.me/0386316282"; 
+        function updateSensitivity(value) {
+            document.getElementById('sensitivityValue').innerText = value;
         }
 
-        function toggleSlider(element, sliderId) {
-            const sliderContainer = document.getElementById(sliderId);
-            sliderContainer.style.display = element.checked ? 'block' : 'none';
-        }
-
-        function updateSliderValue(sliderId, valueId) {
-            const slider = document.getElementById(sliderId);
-            const valueDisplay = document.getElementById(valueId);
-            valueDisplay.textContent = slider.value + '%';
-        }
-
-        function showSuccess(button) {
-            button.textContent = "Please Loading...";
-            button.classList.add("disabled"); 
-            button.disabled = true; 
-            setTimeout(() => {
-                button.textContent = "PayLoad - True";
-            }, 3000); 
+        function toggleFeature(button) {
+            button.classList.toggle('glowing-border');
         }
     </script>
 </head>
 <body>
-
-<div class="container"> 
-    <div class="login-panel">
-        <h2>Github By @minhchauiOScheat</h2>
-        <p class="description">Vui lòng nhập thông tin đăng nhập của bạn.</p>
-        <input type="text" id="username" class="input-field" placeholder="USERNAME">
-        <input type="password" id="password" class="input-field" placeholder="PASSWORD">
-        <button onclick="login()">ĐĂNG NHẬP</button>
+    <div class="background"></div>
+    <div class="stars" id="stars"></div>
+    <div class="container"> 
+        <div class="login-panel" id="loginPanel">
+            <h2 class="rainbow-text">Hub+ @minhchauioscheat</h2>
+            <p class="description">Vui lòng nhập thông tin đăng nhập của bạn.</p>
+            <input type="text" id="username" class="input-field" placeholder="Accessibility1">
+            <input type="password" id="password" class="input-field" placeholder="ert-0192">
+            <button onclick="login()">ĐĂNG NHẬP</button>
+        </div>
+        <div class="dashboard" id="dashboard" style="display: none;">
+            <h2>Chào mừng bạn đã đăng nhập!</h2>
+            <p class="red-glow-text">Function table created by 𝐌𝐢𝐧𝐡𝐂𝐡𝐚𝐮シ</p>
+            <label for="sensitivity">Chỉnh độ nhạy:</label>
+            <input type="range" id="sensitivity" min="1" max="100" value="50" onchange="updateSensitivity(this.value)">
+            <span id="sensitivityValue">50</span>
+            <button onclick="toggleFeature(this)">Screen Editing</button>
+            <button onclick="toggleFeature(this)">Smooth Cursor</button>
+            <button onclick="toggleFeature(this)">Pin The Target</button>
+            <button onclick="toggleFeature(this)">( Fake PPI )</button>
+            <button onclick="window.location.href='https://zalo.me/0386316282'">Mua Hàng Thì Click!</button>
+            <button onclick="logout()">ĐĂNG XUẤT</button>
+        </div>
     </div>
-
-    <div class="panel">
-        <div class="header"></div>
-        <div class="button-bar" onclick="goToLink()">Inbox Adminᶻ 𝗓 𐰁 .ᐟ</div>
-        <div class="switch-bar">
-            <label><input type="checkbox"> Tối Ưu Thiết Bị </label>
-            <label><input type="checkbox"> Sensitivity </label>
-            <label><input type="checkbox"> Tốc Độ Wps</label>
-        </div>
-
-        <div class="option">
-            <div>
-                <strong>Click Smooth </strong>
-            </div>
-            <label class="switch">
-                <input type="checkbox" onchange="toggleSlider(this, 'regedit-slider')">
-                <span class="slider-switch"></span>
-            </label>
-        </div>
-        <div class="slider-container" id="regedit-slider">
-            <input type="range" class="slider" min="0" max="100" value="50" id="regedit-range" oninput="updateSliderValue('regedit-range', 'regedit-value')">
-            <div class="slider-value" id="regedit-value">50%</div>
-        </div>
-
-        <div class="option">
-            <div>
-                <strong>Dpi Config</strong>
-            </div>
-            <label class="switch">
-                <input type="checkbox" onchange="toggleSlider(this, 'sensitivity-slider')">
-                <span class="slider-switch"></span>
-            </label>
-        </div>
-        <div class="slider-container" id="sensitivity-slider">
-            <input type="range" class="slider" min="0" max="100" value="50" id="sensitivity-range" oninput="updateSliderValue('sensitivity-range', 'sensitivity-value')">
-            <div class="slider-value" id="sensitivity-value">50%</div>
-        </div>
-
-        <div class="option">
-            <div>
-                <strong>Optimal 2.0</strong>
-            </div>
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider-switch"></span>
-            </label>
-        </div>
-
-        <div class="option">
-            <div>
-                <strong>No Band User</strong>
-            </div>
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider-switch"></span>
-            </label>
-        </div>
-
-        <div class="option">
-            <div>
-                <strong>Run No Scope</strong>
-            </div>
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider-switch"></span>
-            </label>
-        </div>
-
-        <div class="option">
-            <div>
-                <strong>Cài Đặt Fake - Crt:</strong>
-                <input type="file" onchange="handleFileSelect(event)" />
-            </div>
-        </div>
-
-        <button class="settings-button" onclick="showSuccess(this)">Input - File</button>
-
-        <div class="footer">@minhchauiOScheat</div>
-        <div class="copyright">🌟 Menu Mode 2% 🌟 </div> 
-    </div>
-</div>
-
 </body>
 </html>
