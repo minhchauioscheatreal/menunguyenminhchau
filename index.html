@@ -91,20 +91,34 @@
             0% { color: darkred; text-shadow: 0 0 5px red; }
             100% { color: red; text-shadow: 0 0 15px red; }
         }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
     </style>
     <script>
         function login() {
-            document.getElementById('loginPanel').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'flex';
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            const correctUsername = "admin";
+            const correctPassword = "123456";
+
+            if (username === correctUsername && password === correctPassword) {
+                document.getElementById('loginPanel').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'flex';
+                errorMsg.style.display = 'none';
+            } else {
+                errorMsg.style.display = 'block';
+                errorMsg.innerText = "Sai tài khoản hoặc mật khẩu. Vui lòng thử lại!";
+            }
         }
 
         function logout() {
             document.getElementById('dashboard').style.display = 'none';
             document.getElementById('loginPanel').style.display = 'block';
-        }
-
-        function updateSensitivity(value) {
-            document.getElementById('sensitivityValue').innerText = value;
         }
 
         function toggleFeature(button) {
@@ -121,6 +135,7 @@
             <p class="description">Vui lòng nhập thông tin đăng nhập của bạn.</p>
             <input type="text" id="username" class="input-field" placeholder="USERNAME">
             <input type="password" id="password" class="input-field" placeholder="PASSWORD">
+            <p id="errorMsg" class="error" style="display: none;"></p>
             <button onclick="login()">ĐĂNG NHẬP</button>
         </div>
         <div class="dashboard" id="dashboard" style="display: none;">
