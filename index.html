@@ -36,40 +36,19 @@
             position: relative;
             padding: 20px;
             border-radius: 15px;
-            animation: borderColorChange 3s infinite;
             border: 5px solid transparent;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
             background: rgba(0, 0, 0, 0.7);
+            animation: menuGlow 3s infinite alternate;
         }
 
-        .dashboard {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .dashboard button {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .glowing-border {
-            animation: glowing 1s infinite alternate;
-        }
-
-        @keyframes glowing {
-            0% { box-shadow: 0 0 5px red, 0 0 10px orange, 0 0 15px yellow, 0 0 20px green, 0 0 25px blue, 0 0 30px indigo, 0 0 35px violet; }
-            100% { box-shadow: 0 0 10px violet, 0 0 15px indigo, 0 0 20px blue, 0 0 25px green, 0 0 30px yellow, 0 0 35px orange, 0 0 40px red; }
+        @keyframes menuGlow {
+            0% { border-color: cyan; box-shadow: 0 0 10px cyan; }
+            100% { border-color: yellow; box-shadow: 0 0 20px yellow; }
         }
 
         .rainbow-text {
-            animation: rainbowText 2s infinite linear;
+            animation: rainbowText 4s infinite linear;
         }
 
         @keyframes rainbowText {
@@ -84,18 +63,40 @@
         }
 
         .red-glow-text {
-            animation: redGlow 1s infinite alternate;
+            animation: redGlow 2s infinite alternate;
         }
 
         @keyframes redGlow {
             0% { color: darkred; text-shadow: 0 0 5px red; }
             100% { color: red; text-shadow: 0 0 15px red; }
         }
+
+        .error-message {
+            color: red;
+            display: none;
+            margin-top: 10px;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
     </style>
     <script>
         function login() {
-            document.getElementById('loginPanel').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'flex';
+            const username = document.getElementById('Accessibility1').value;
+            const password = document.getElementById('ert-0192').value;
+            const errorMessage = document.getElementById('error-message');
+            
+            if (username === "adminminhchau" && password === "ert-124k") {
+                errorMessage.style.display = 'none';
+                document.getElementById('loginPanel').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'flex';
+            } else {
+                errorMessage.style.display = 'block';
+            }
         }
 
         function logout() {
@@ -119,12 +120,13 @@
         <div class="login-panel" id="loginPanel">
             <h2 class="rainbow-text">Hub+ @minhchauioscheat</h2>
             <p class="description">Vui lòng nhập thông tin đăng nhập của bạn.</p>
-            <input type="text" id="Accessibility1" class="input-field" placeholder="USERNAME">
-            <input type="password" id="ert-0192" class="input-field" placeholder="PASSWORD">
+            <input type="text" id="username" class="input-field" placeholder="USERNAME">
+            <input type="password" id="password" class="input-field" placeholder="PASSWORD">
             <button onclick="login()">ĐĂNG NHẬP</button>
+            <p id="error-message" class="error-message">Sai tài khoản hoặc mật khẩu. Vui lòng thử lại.</p>
         </div>
         <div class="dashboard" id="dashboard" style="display: none;">
-            <h2>Chào mừng bạn đã đăng nhập!</h2>
+            <h2 class="rainbow-text">Chào mừng bạn đã đăng nhập!</h2>
             <p class="red-glow-text">Function table created by 𝐌𝐢𝐧𝐡𝐂𝐡𝐚𝐮シ</p>
             <label for="sensitivity">Chỉnh độ nhạy:</label>
             <input type="range" id="sensitivity" min="1" max="100" value="50" onchange="updateSensitivity(this.value)">
